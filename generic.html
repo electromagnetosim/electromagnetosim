@@ -39,6 +39,45 @@
 						</div>
 					</section>
 
+
+				<!-- Container for the 2D box -->
+		<div style="margin:20px;">
+		  <div id="white-box" 
+		       style="width:400px; height:400px; background:white; border:2px solid black; position:relative; cursor:crosshair;">
+		  </div>
+		  <button id="reset-btn" style="margin-top:10px;">Reset</button>
+		</div>
+		
+		<script>
+		  const box = document.getElementById('white-box');
+		  const resetBtn = document.getElementById('reset-btn');
+		
+		  // When the user clicks the box, place a small circle
+		  box.addEventListener('click', function(e) {
+		    const rect = box.getBoundingClientRect();
+		    const x = e.clientX - rect.left;
+		    const y = e.clientY - rect.top;
+		
+		    const circle = document.createElement('div');
+		    circle.style.width = '10px';
+		    circle.style.height = '10px';
+		    circle.style.background = 'red';
+		    circle.style.borderRadius = '50%';
+		    circle.style.position = 'absolute';
+		    circle.style.left = (x - 5) + 'px'; // center the circle
+		    circle.style.top = (y - 5) + 'px';
+		    box.appendChild(circle);
+		  });
+		
+		  // Reset button clears all circles
+		  resetBtn.addEventListener('click', function() {
+		    while (box.firstChild) {
+		      box.removeChild(box.firstChild);
+		    }
+		  });
+		</script>
+
+
 			</div>
 
 		<!-- Footer -->
@@ -62,4 +101,5 @@
 	</body>
 
 </html>
+
 
