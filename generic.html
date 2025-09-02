@@ -46,11 +46,13 @@
 		       style="width:400px; height:400px; background:white; border:2px solid black; position:relative; cursor:crosshair;">
 		  </div>
 		  <button id="reset-btn" style="margin-top:10px;">Reset</button>
+		  <button id="undo-btn" style="margin-top:10px;">Undo</button>
 		</div>
 		
 		<script>
 		  const box = document.getElementById('white-box');
 		  const resetBtn = document.getElementById('reset-btn');
+		  const undoBtn = document.getElementById('undo-btn');
 		
 		  // When the user clicks the box, place a small circle
 		  box.addEventListener('click', function(e) {
@@ -68,6 +70,11 @@
 		    circle.style.top = (y - 5) + 'px';
 		    box.appendChild(circle);
 		  });
+		  
+		  undoBtn.addEventListener('click', function() {
+		    box.removeChild(box.lastChild);
+		  });
+			
 		
 		  // Reset button clears all circles
 		  resetBtn.addEventListener('click', function() {
